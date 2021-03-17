@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render expenseDashboardPage correctly 1`] = `
+<div>
+  <h1>
+    Expensify App | Dashboard
+  </h1>
+  <p>
+    This is the expense dashboard page
+  </p>
+  <Connect(ExpenseListFilter) />
+  <Connect(ExpenseList) />
+</div>
+`;

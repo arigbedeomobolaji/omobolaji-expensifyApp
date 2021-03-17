@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render NotFoundPage Correctly 1`] = `
+<div>
+  <h1>
+    Expensify App | 404
+  </h1>
+  <p>
+    The page you are looking for doesn't exist
+  </p>
+  <Link
+    to="/"
+  >
+    Go to Home
+  </Link>
+</div>
+`;
