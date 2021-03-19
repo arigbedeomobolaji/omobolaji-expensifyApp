@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = (env) => {
  const cssExtractPlugin = new MiniCssExtractPlugin({
-  filename: "style.css"
+  filename: "styles.css"
  })
 
  return ({
