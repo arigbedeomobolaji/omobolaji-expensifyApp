@@ -10,10 +10,10 @@ exports[`should render ExpenseListItem component correctly 1`] = `
     </Link>
   </td>
   <td>
-    5000
+    $50.00
   </td>
   <td>
-    0
+    January 1st, 1970
   </td>
 </tr>
 `;
