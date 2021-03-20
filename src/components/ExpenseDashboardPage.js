@@ -3,11 +3,12 @@
 import React from "react"
 import ConnectExpenseList from "./ExpenseList"
 import ConnectedExpenseListFilter from "./ExpenseListFilter"
+import ConnectedExpenseSummary from "./ExpenseSummary"
 
 const ExpenseDashboardPage = () => (
  <div>
   <h1>Expensify App | Dashboard</h1>
-  <p>This is the expense dashboard page</p>
+  <ConnectedExpenseSummary />
   <ConnectedExpenseListFilter />
   <ConnectExpenseList />
  </div>
