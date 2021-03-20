@@ -1,21 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should render ExpenseSummary correctly with one expense 1`] = `
-<div>
-  <p>
-    Viewing
-     expenses(s) totalling
-    $50.00
-  </p>
-</div>
-`;
+exports[`Should render ExpenseSummary correctly with one expense 1`] = `<div />`;
 
 exports[`should dipslay correct number of visible expenses 1`] = `
 <div>
   <p>
     Viewing
     3
-     expenses(s) totalling
+     
+    expenses
+     totalling
     $56.00
   </p>
 </div>
