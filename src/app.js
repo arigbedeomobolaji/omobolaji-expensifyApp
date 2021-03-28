@@ -8,7 +8,7 @@ import store from "./store/configstore.store"
 import "normalize.css/normalize.css"
 import "react-dates/lib/css/_datepicker.css"
 import "./styles/style.scss"
-
+import "./firebase/firebase"
 
 //With this I have been able to provide the store for all my component to mae use of it.
 const jsx = (
