@@ -53,3 +53,25 @@ export const editExpense = (id, updates) => ({
  id,
  updates
 })
+
+// SET_EXPENSES => fetches expenses in the databse and save it as an array
+export const setExpenses = (expenses) => ({
+  type: "SET_EXPENSES",
+  expenses
+})
+
+export const asyncSetExpenses = () => {
+  return (dispatch) => {
+    return database.ref("expenses").once("value").then((snapshot) => {
+      const expenses = []
+      // const firebaseExpenses = snapshot.val()
+      snapshot.forEach((childSnapshot) => {
+        expenses.push({
+          id: childSnapshot.key,
+          ...childSnapshot.val()
+        })
+      })
+      dispatch(setExpenses(expenses))
+    })
+  }
+};
