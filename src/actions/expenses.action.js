@@ -62,6 +62,16 @@ export const editExpense = (id, updates) => ({
  updates
 })
 
+export const asyncEditExpense = (id, updates) => {
+  return (dispatch) => {
+    return database.ref(`expenses/${id}`).update({
+      ...updates
+    }).then(() => {
+      dispatch(editExpense(id, updates))
+    })
+  }
+}
+
 // SET_EXPENSES => fetches expenses in the databse and save it as an array
 export const setExpenses = (expenses) => ({
   type: "SET_EXPENSES",
