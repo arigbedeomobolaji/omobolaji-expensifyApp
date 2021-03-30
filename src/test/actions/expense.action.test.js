@@ -1,9 +1,12 @@
 // import react-mock-store and react-thunk
 import configureStore from "redux-mock-store"
 import thunk from "redux-thunk"
-import { asyncAddExpense ,addExpense, removeExpense, editExpense, setExpenses, asyncSetExpenses} from "../../actions/expenses.action"
+import {
+ asyncAddExpense, addExpense, removeExpense, editExpense, setExpenses, asyncSetExpenses, asyncRemoveExpense
+} from "../../actions/expenses.action"
 import expenses from "../fixtures/expense"
 import database from "../../firebase/firebase"
+import createMockStore from "redux-mock-store"
 // configure redux-mock-store to take advantage of the redux-thunk
 const middlewares = [thunk]
 const mockstore = configureStore(middlewares)
@@ -21,10 +24,29 @@ beforeEach((done) => {
 })
 
 test("Should setup remove expense action object", () => {
- const action = removeExpense({id: "123abc"})
+ const action = removeExpense("123abc")
  expect(action).toEqual({
   type: "REMOVE_EXPENSE",
   id: "123abc"
+ })
+})
+
+test("Should remove expense from database", (done) => {
+ const store = mockstore({})
+ const id = expenses[1].id
+
+ store.dispatch(asyncRemoveExpense(id)).then(() => {
+  const actions = store.getActions()
+  console.log(actions)
+  expect(actions[0]).toEqual({
+   type: "REMOVE_EXPENSE",
+   id
+  })
+  return database.ref(`expenses/${id}`).once("value")
+   .then((snapshot) => {
+    expect(snapshot.val()).toBeFalsy()
+    done()
+   })
  })
 })
 
