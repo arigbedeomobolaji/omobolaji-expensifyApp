@@ -22,7 +22,8 @@ export const addExpense = (expense = {}) => ({
 // async addExpense
 export const asyncAddExpense = (expenseData = {}) => {
   // this is the function returned by the redux action generator
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid
     const {
       description = "",
       note = "",
@@ -30,7 +31,7 @@ export const asyncAddExpense = (expenseData = {}) => {
       createdAt = 0
     } = expenseData
     const expense = { description, note, amount, createdAt }
-    return database.ref("expenses").push(expense).then((snapshot) => {
+    return database.ref(`users/${uid}/expenses`).push(expense).then((snapshot) => {
       // What I'm doing here is that I'm updating the redux store so that as the database changes reduc store also change
       dispatch(addExpense({
         id: snapshot.key,
@@ -48,8 +49,9 @@ export const removeExpense = (id) => ({
 })
 
 export const asyncRemoveExpense = (id) => {
-  return (dispatch) => {
-    return database.ref(`expenses/${id}`).remove().then(() => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid
+    return database.ref(`users/${uid}/expenses/${id}`).remove().then(() => {
       dispatch(removeExpense(id))
     })
   }
@@ -63,10 +65,9 @@ export const editExpense = (id, updates) => ({
 })
 
 export const asyncEditExpense = (id, updates) => {
-  return (dispatch) => {
-    return database.ref(`expenses/${id}`).update({
-      ...updates
-    }).then(() => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid
+    return database.ref(`users/${uid}/expenses/${id}`).update(updates).then(() => {
       dispatch(editExpense(id, updates))
     })
   }
@@ -79,8 +80,9 @@ export const setExpenses = (expenses) => ({
 })
 
 export const asyncSetExpenses = () => {
-  return (dispatch) => {
-    return database.ref("expenses").once("value").then((snapshot) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid
+    return database.ref(`users/${uid}/expenses`).once("value").then((snapshot) => {
       const expenses = []
       // const firebaseExpenses = snapshot.val()
       snapshot.forEach((childSnapshot) => {

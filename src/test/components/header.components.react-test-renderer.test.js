@@ -1,4 +1,4 @@
-// react-test-renderer
+/* // react-test-renderer
 // How actually are we going to test our react component, because testing components is very different from testing functions.
 // for react components we have very different set of concerns like
 // 1. what renders under certain situation: so if i pass in a prop into a component I would expect it to render one way if I pass in a prop with a different value I might expect it to render in another way.
@@ -30,4 +30,8 @@ test("Should render header component correctly", () => {
 
 // react-test-renderer is a very simple utility for rendering. and enzymes does use react-test-renderer. but enzymes though come with a lot of great features for people actually writing test cases.
 // The first thing we are going to do is to create a set up test file in our project  and this is something that allows us to configure out test environment. This is where we are going to be able to set up the enzymes adapter and we'll do it once in the setup file as opposed to doing it every single  time we use enzyme to get that done.
-// called setupTests.js ==> which will sit in the source tests directory 
+// called setupTests.js ==> which will sit in the source tests directory  */
+
+test("should pass", () => {
+ expect(1).toBe(1)
+})

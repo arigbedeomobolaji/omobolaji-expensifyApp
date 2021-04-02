@@ -8,12 +8,12 @@ export class EditExpensePage extends React.Component {
   onSubmit = (expense) => {
     // props.dispatch(editExpense(props.expense.id, expense))
     this.props.asyncEditExpense(this.props.expense.id, expense)
-    this.props.history.push("/")
+    this.props.history.push("/dashboard")
   }
 
   handleRemoveExpense = (e) => {
     this.props.asyncRemoveExpense(this.props.expense.id)
-    this.props.history.push("/")
+    this.props.history.push("/dashboard")
   }
 
   render() {

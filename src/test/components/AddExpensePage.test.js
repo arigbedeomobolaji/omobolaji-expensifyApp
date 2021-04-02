@@ -17,6 +17,6 @@ test("should render AddExpensePage correctly", () => {
 
 test("Should render AddExpensePage correctly on submit", () => {
  wrapper.find("ExpenseForm").prop("onSubmit")(expenses[1])
- expect(history.push).toHaveBeenLastCalledWith("/")
+ expect(history.push).toHaveBeenLastCalledWith("/dashboard")
  expect(asyncAddExpense).toHaveBeenLastCalledWith(expenses[1])
 })

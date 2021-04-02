@@ -4,10 +4,11 @@ import {connect} from "react-redux"
 import ExpenseForm from "./ExpenseForm"
 import {asyncAddExpense} from "../actions/expenses.action.js"
 
+// History is passed into AddExpensePage becus AddExpensagePage is registered to a Route
 export class AddExpensePage extends React.Component{
  onSubmit = (expense) => {
   this.props.asyncAddExpense(expense)
-  this.props.history.push("/")
+  this.props.history.push("/dashboard")
  }
  render() {
   return (

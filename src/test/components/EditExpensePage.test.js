@@ -19,12 +19,12 @@ test("should render expense page correctly", () => {
 
 test("should handle remove expense", () => {
  wrapper.find("button").simulate("click")
- expect(history.push).toHaveBeenLastCalledWith("/")
+ expect(history.push).toHaveBeenLastCalledWith("/dashboard")
  expect(asyncRemoveExpense).toHaveBeenLastCalledWith(expenses[1].id)
 })
 
 test("Should handle asyncEditExpense", () => {
  wrapper.find("ExpenseForm").prop("onSubmit")(expenses[1])
- expect(history.push).toHaveBeenLastCalledWith("/")
+ expect(history.push).toHaveBeenLastCalledWith("/dashboard")
  expect(asyncEditExpense).toHaveBeenLastCalledWith(expenses[1].id, expenses[1])
 })
