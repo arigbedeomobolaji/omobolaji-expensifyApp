@@ -12,7 +12,7 @@ import "normalize.css/normalize.css"
 import "react-dates/lib/css/_datepicker.css"
 import "./styles/style.scss"
 import { firebase } from "./firebase/firebase"
-
+import LoadingPage from "./components/LoadingPage.js"
 
 const store = configureStore
 //With this I have been able to provide the store for all my component to mae use of it.
@@ -31,7 +31,7 @@ const renderApp = () => {
  }
 }
 
-ReactDOM.render(<p>Loading...</p>, document.getElementById("app"))
+ReactDOM.render(<LoadingPage />, document.getElementById("app"))
 
 
 // We can directlt history.push() here becuase In this context we are not inside of a component that is registered to a route  

@@ -7,7 +7,6 @@ import ConnectedExpenseSummary from "./ExpenseSummary"
 
 const ExpenseDashboardPage = () => (
  <div>
-  <h1>Expensify App | Dashboard</h1>
   <ConnectedExpenseSummary />
   <ConnectedExpenseListFilter />
   <ConnectExpenseList />

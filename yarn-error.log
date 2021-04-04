@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\arigb\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add --dev redux-mock-store
+  C:\Program Files\nodejs\node.exe C:\Users\arigb\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @babel/polyfill
 
 PATH: 
-  C:\Users\arigb\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\cmd;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk-14\bin;C:\Program Files\nodejs;C:\Users\arigb\AppData\Local\Programs\Python\Python38-32\Scripts;C:\Users\arigb\AppData\Local\Programs\Python\Python38-32;C:\Program Files\Python38\Scripts;C:\Users\arigb\AppData\Local\Microsoft\WindowsApps;C:\Users\arigb\AppData\Local\hyper\app-3.0.2\resources\bin;C:\Program Files\Java\oracle\jdk-14\bin;C:\Program Files\heroku\bin;C:\Users\arigb\AppData\Roaming\npm;C:\Program Files\JetBrains\PyCharm Community Edition 2020.2.2\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\arigb\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk-14\bin;C:\Program Files\nodejs;C:\Users\arigb\AppData\Local\Programs\Python\Python38-32\Scripts;C:\Users\arigb\AppData\Local\Programs\Python\Python38-32;C:\Program Files\Python38\Scripts;C:\Users\arigb\AppData\Local\Microsoft\WindowsApps;C:\Users\arigb\AppData\Local\hyper\app-3.0.2\resources\bin;C:\Program Files\Java\oracle\jdk-14\bin;C:\Program Files\heroku\bin;C:\Users\arigb\AppData\Roaming\npm;C:\Program Files\JetBrains\PyCharm Community Edition 2020.2.2\bin
 
 Yarn version: 
   1.22.10
@@ -14,8 +14,13 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: connect EHOSTUNREACH 104.16.24.35:443
-      at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1141:16)
+  Error: Client network socket disconnected before secure TLS connection was established
+      at connResetException (internal/errors.js:610:14)
+      at TLSSocket.onConnectEnd (_tls_wrap.js:1546:19)
+      at Object.onceWrapper (events.js:421:28)
+      at TLSSocket.emit (events.js:327:22)
+      at endReadableNT (_stream_readable.js:1220:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21)
 
 npm manifest: 
   {
@@ -27,7 +32,7 @@ npm manifest:
       "build:dev": "webpack --watch",
       "build:prod": "webpack --env=production",
       "serve": "webpack serve",
-      "test": "jest --config=jest.config.json",
+      "test": "cross-env NODE_ENV=test jest --config=jest.config.json",
       "start": "node server/server.js",
       "heroku-postbuild": "yarn run build:prod"
     },
@@ -39,18 +44,20 @@ npm manifest:
       "@babel/preset-react": "^7.12.13",
       "babel": "^6.23.0",
       "babel-loader": "^8.2.2",
+      "babel-polyfill": "^6.26.0",
       "css-loader": "^5.0.1",
       "express": "^4.17.1",
       "firebase": "^8.3.1",
+      "history": "4.10.1",
       "identity-obj-proxy": "^3.0.0",
       "mini-css-extract-plugin": "^1.3.9",
       "moment": "^2.29.1",
       "normalize.css": "^8.0.1",
       "numeral": "^2.0.6",
       "raf": "^3.4.1",
-      "react": "^17.0.1",
+      "react": "^16.14.0",
       "react-dates": "^21.8.0",
-      "react-dom": "^17.0.1",
+      "react-dom": "16.14.0",
       "react-redux": "^7.2.2",
       "react-router-dom": "^5.2.0",
       "redux": "^4.0.5",
@@ -63,12 +70,16 @@ npm manifest:
       "webpack-cli": "^4.5.0"
     },
     "devDependencies": {
+      "cross-env": "^7.0.3",
+      "dotenv": "^8.2.0",
       "enzyme": "^3.11.0",
       "enzyme-adapter-react-16": "^1.15.6",
       "enzyme-to-json": "^3.6.1",
       "jest": "^26.6.3",
       "live-server": "^1.2.1",
-      "react-test-renderer": "^17.0.1",
+      "react-test-renderer": "16.14.0",
+      "redux-mock-store": "^1.5.4",
+      "url-loader": "^4.1.1",
       "webpack-dev-server": "^3.11.2"
     }
   }
@@ -2249,6 +2260,15 @@ Lockfile:
       "@types/babel__core" "^7.0.0"
       "@types/babel__traverse" "^7.0.6"
   
+  babel-polyfill@^6.26.0:
+    version "6.26.0"
+    resolved "https://registry.yarnpkg.com/babel-polyfill/-/babel-polyfill-6.26.0.tgz#379937abc67d7895970adc621f284cd966cf2153"
+    integrity sha1-N5k3q8Z9eJWXCtxiHyhM2WbPIVM=
+    dependencies:
+      babel-runtime "^6.26.0"
+      core-js "^2.5.0"
+      regenerator-runtime "^0.10.5"
+  
   babel-preset-current-node-syntax@^1.0.0:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/babel-preset-current-node-syntax/-/babel-preset-current-node-syntax-1.0.1.tgz#b4399239b89b2a011f9ddbe3e4f401fc40cff73b"
@@ -2274,6 +2294,14 @@ Lockfile:
     dependencies:
       babel-plugin-jest-hoist "^26.6.2"
       babel-preset-current-node-syntax "^1.0.0"
+  
+  babel-runtime@^6.26.0:
+    version "6.26.0"
+    resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
+    integrity sha1-llxwWGaOgrVde/4E/yM3vItWR/4=
+    dependencies:
+      core-js "^2.4.0"
+      regenerator-runtime "^0.11.0"
   
   babel@^6.23.0:
     version "6.23.0"
@@ -2831,6 +2859,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.5.tgz#7395dc273af37fb2e50e9bd3d9fe841285231d1a"
     integrity sha512-vZVEEwZoIsI+vPEuoF9Iqf5H7/M3eeQqWlQnYa8FSKKePuYTf5MWnxb5SDAzCa60b3JBRS5g9b+Dq7b1y/RCrA==
   
+  core-js@^2.4.0, core-js@^2.5.0:
+    version "2.6.12"
+    resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
+    integrity sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
+  
   core-util-is@1.0.2, core-util-is@~1.0.0:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
@@ -2844,6 +2877,13 @@ Lockfile:
       object-assign "^4"
       vary "^1"
   
+  cross-env@^7.0.3:
+    version "7.0.3"
+    resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-7.0.3.tgz#865264b29677dc015ba8418918965dd232fc54cf"
+    integrity sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==
+    dependencies:
+      cross-spawn "^7.0.1"
+  
   cross-spawn@^6.0.0:
     version "6.0.5"
     resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-6.0.5.tgz#4a5ec7c64dfae22c3a14124dbacdee846d80cbc4"
@@ -2855,7 +2895,7 @@ Lockfile:
       shebang-command "^1.2.0"
       which "^1.2.9"
   
-  cross-spawn@^7.0.0, cross-spawn@^7.0.3:
+  cross-spawn@^7.0.0, cross-spawn@^7.0.1, cross-spawn@^7.0.3:
     version "7.0.3"
     resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"
     integrity sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==
@@ -3162,6 +3202,11 @@ Lockfile:
       dom-serializer "^1.0.1"
       domelementtype "^2.0.1"
       domhandler "^4.0.0"
+  
+  dotenv@^8.2.0:
+    version "8.2.0"
+    resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
+    integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
   
   duplexer@~0.1.1:
     version "0.1.2"
@@ -4107,7 +4152,7 @@ Lockfile:
     dependencies:
       function-bind "^1.1.1"
   
-  history@^4.9.0:
+  history@4.10.1, history@^4.9.0:
     version "4.10.1"
     resolved "https://registry.yarnpkg.com/history/-/history-4.10.1.tgz#33371a65e3a83b267434e2b3f3b1b4c58aad4cf3"
     integrity sha512-36nwAD620w12kuzPAsyINPWJqlNbij+hpK1k9XRloDtym8mxzGYl2c17LnV6IAGB2Dmg4tEa7G7DlawS0+qjew==
@@ -5367,6 +5412,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
     integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
   
+  lodash.isplainobject@^4.0.6:
+    version "4.0.6"
+    resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
+    integrity sha1-fFJqUtibRcRcxpC4gWO+BJf1UMs=
+  
   lodash.sortby@^4.7.0:
     version "4.7.0"
     resolved "https://registry.yarnpkg.com/lodash.sortby/-/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
@@ -6413,21 +6463,22 @@ Lockfile:
       react-with-styles "^4.1.0"
       react-with-styles-interface-css "^6.0.0"
   
-  react-dom@^17.0.1:
-    version "17.0.1"
-    resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.1.tgz#1de2560474ec9f0e334285662ede52dbc5426fc6"
-    integrity sha512-6eV150oJZ9U2t9svnsspTMrWNyHc6chX0KzDeAOXftRa8bNeOKTTfCJ7KorIwenkHd2xqVTBTCZd79yk/lx/Ug==
+  react-dom@16.14.0:
+    version "16.14.0"
+    resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.14.0.tgz#7ad838ec29a777fb3c75c3a190f661cf92ab8b89"
+    integrity sha512-1gCeQXDLoIqMgqD3IO2Ah9bnf0w9kzhwN5q4FGnHZ67hBm9yePzB5JJAIQCc8x3pFnNlwFq4RidZggNAAkzWWw==
     dependencies:
       loose-envify "^1.1.0"
       object-assign "^4.1.1"
-      scheduler "^0.20.1"
+      prop-types "^15.6.2"
+      scheduler "^0.19.1"
   
   react-is@^16.12.0, react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.6:
     version "16.13.1"
     resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
     integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
   
-  "react-is@^16.12.0 || ^17.0.0", react-is@^17.0.1:
+  react-is@^17.0.1:
     version "17.0.1"
     resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
     integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
@@ -6497,15 +6548,7 @@ Lockfile:
       tiny-invariant "^1.0.2"
       tiny-warning "^1.0.0"
   
-  react-shallow-renderer@^16.13.1:
-    version "16.14.1"
-    resolved "https://registry.yarnpkg.com/react-shallow-renderer/-/react-shallow-renderer-16.14.1.tgz#bf0d02df8a519a558fd9b8215442efa5c840e124"
-    integrity sha512-rkIMcQi01/+kxiTE9D3fdS959U1g7gs+/rborw++42m1O9FAQiNI/UNRZExVUoAOprn4umcXf+pFRou8i4zuBg==
-    dependencies:
-      object-assign "^4.1.1"
-      react-is "^16.12.0 || ^17.0.0"
-  
-  react-test-renderer@^16.0.0-0:
+  react-test-renderer@16.14.0, react-test-renderer@^16.0.0-0:
     version "16.14.0"
     resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.14.0.tgz#e98360087348e260c56d4fe2315e970480c228ae"
     integrity sha512-L8yPjqPE5CZO6rKsKXRO/rVPiaCOy0tQQJbC+UjPNlobl5mad59lvPjwFsQHTvL03caVDIVr9x9/OSgDe6I5Eg==
@@ -6514,16 +6557,6 @@ Lockfile:
       prop-types "^15.6.2"
       react-is "^16.8.6"
       scheduler "^0.19.1"
-  
-  react-test-renderer@^17.0.1:
-    version "17.0.1"
-    resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-17.0.1.tgz#3187e636c3063e6ae498aedf21ecf972721574c7"
-    integrity sha512-/dRae3mj6aObwkjCcxZPlxDFh73XZLgvwhhyON2haZGUEhiaY5EjfAdw+d/rQmlcFwdTpMXCSGVk374QbCTlrA==
-    dependencies:
-      object-assign "^4.1.1"
-      react-is "^17.0.1"
-      react-shallow-renderer "^16.13.1"
-      scheduler "^0.20.1"
   
   react-with-direction@^1.3.1:
     version "1.3.1"
@@ -6558,13 +6591,14 @@ Lockfile:
       prop-types "^15.7.2"
       react-with-direction "^1.3.1"
   
-  react@^17.0.1:
-    version "17.0.1"
-    resolved "https://registry.yarnpkg.com/react/-/react-17.0.1.tgz#6e0600416bd57574e3f86d92edba3d9008726127"
-    integrity sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w==
+  react@^16.14.0:
+    version "16.14.0"
+    resolved "https://registry.yarnpkg.com/react/-/react-16.14.0.tgz#94d776ddd0aaa37da3eda8fc5b6b18a4c9a3114d"
+    integrity sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==
     dependencies:
       loose-envify "^1.1.0"
       object-assign "^4.1.1"
+      prop-types "^15.6.2"
   
   read-pkg-up@^7.0.1:
     version "7.0.1"
@@ -6630,6 +6664,13 @@ Lockfile:
     dependencies:
       resolve "^1.9.0"
   
+  redux-mock-store@^1.5.4:
+    version "1.5.4"
+    resolved "https://registry.yarnpkg.com/redux-mock-store/-/redux-mock-store-1.5.4.tgz#90d02495fd918ddbaa96b83aef626287c9ab5872"
+    integrity sha512-xmcA0O/tjCLXhh9Fuiq6pMrJCwFRaouA8436zcikdIpYWWCjU76CRk+i2bHx8EeiSiMGnB85/lZdU3wIJVXHTA==
+    dependencies:
+      lodash.isplainobject "^4.0.6"
+  
   redux-thunk@^2.3.0:
     version "2.3.0"
     resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.3.0.tgz#51c2c19a185ed5187aaa9a2d08b666d0d6467622"
@@ -6659,6 +6700,16 @@ Lockfile:
     version "1.4.2"
     resolved "https://registry.yarnpkg.com/regenerate/-/regenerate-1.4.2.tgz#b9346d8827e8f5a32f7ba29637d398b69014848a"
     integrity sha512-zrceR/XhGYU/d/opr2EKO7aRHUeiBI8qjtfHqADTwZd6Szfy16la6kqD0MIUs5z5hx6AaKa+PixpPrR289+I0A==
+  
+  regenerator-runtime@^0.10.5:
+    version "0.10.5"
+    resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.10.5.tgz#336c3efc1220adcedda2c9fab67b5a7955a33658"
+    integrity sha1-M2w+/BIgrc7dosn6tntaeVWjNlg=
+  
+  regenerator-runtime@^0.11.0:
+    version "0.11.1"
+    resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
+    integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
   
   regenerator-runtime@^0.13.4:
     version "0.13.7"
@@ -6934,14 +6985,6 @@ Lockfile:
     version "0.19.1"
     resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.19.1.tgz#4f3e2ed2c1a7d65681f4c854fa8c5a1ccb40f196"
     integrity sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==
-    dependencies:
-      loose-envify "^1.1.0"
-      object-assign "^4.1.1"
-  
-  scheduler@^0.20.1:
-    version "0.20.1"
-    resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.20.1.tgz#da0b907e24026b01181ecbc75efdc7f27b5a000c"
-    integrity sha512-LKTe+2xNJBNxu/QhHvDR14wUXHRQbVY5ZOYpOGWRzhydZUqrLb2JBvLPY7cAqFmqrWuDED0Mjk7013SZiOz6Bw==
     dependencies:
       loose-envify "^1.1.0"
       object-assign "^4.1.1"
@@ -7765,6 +7808,15 @@ Lockfile:
     version "0.1.0"
     resolved "https://registry.yarnpkg.com/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
     integrity sha1-2pN/emLiH+wf0Y1Js1wpNQZ6bHI=
+  
+  url-loader@^4.1.1:
+    version "4.1.1"
+    resolved "https://registry.yarnpkg.com/url-loader/-/url-loader-4.1.1.tgz#28505e905cae158cf07c92ca622d7f237e70a4e2"
+    integrity sha512-3BTV812+AVHHOJQO8O5MkWgZ5aosP7GnROJwvzLS9hWDj00lZ6Z0wNak423Lp9PBZN05N+Jk/N5Si8jRAlGyWA==
+    dependencies:
+      loader-utils "^2.0.0"
+      mime-types "^2.1.27"
+      schema-utils "^3.0.0"
   
   url-parse@^1.4.3, url-parse@^1.4.7:
     version "1.4.7"

@@ -1,36 +1,69 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render ExpenseList correctly with empty expenseList 1`] = `
-<div>
-  <h1>
-    ExpenseList
-  </h1>
-  <p>
-    No Expense to show
-  </p>
+<div
+  className="content-container"
+>
+  <div
+    className="list-header"
+  >
+    <div
+      className="show-for-mobile"
+    >
+      Expenses
+    </div>
+    <div
+      className="show-for-desktop"
+    >
+      Expense
+    </div>
+    <div
+      className="show-for-desktop"
+    >
+      Amount
+    </div>
+  </div>
+  <div
+    className="list-body"
+  >
+    <div
+      className="list-item list-item--message"
+    >
+      <span>
+        No Expense to show
+      </span>
+    </div>
+  </div>
 </div>
 `;
 
 exports[`should render ExpenseList with expenses correctly 1`] = `
-<div>
-  <h1>
-    ExpenseList
-  </h1>
-  <table>
-    <thead>
-      <tr>
-        <th>
-          Description
-        </th>
-        <th>
-          Amount
-        </th>
-        <th>
-          createdAt
-        </th>
-      </tr>
-    </thead>
-    <tbody>
+<div
+  className="content-container"
+>
+  <div
+    className="list-header"
+  >
+    <div
+      className="show-for-mobile"
+    >
+      Expenses
+    </div>
+    <div
+      className="show-for-desktop"
+    >
+      Expense
+    </div>
+    <div
+      className="show-for-desktop"
+    >
+      Amount
+    </div>
+  </div>
+  <div
+    className="list-body"
+  >
+    <div>
       <Connect(ExpenseListItem)
         amount={5000}
         createdAt={0}
@@ -55,7 +88,7 @@ exports[`should render ExpenseList with expenses correctly 1`] = `
         key="3"
         note="My early morning coffee"
       />
-    </tbody>
-  </table>
+    </div>
+  </div>
 </div>
 `;

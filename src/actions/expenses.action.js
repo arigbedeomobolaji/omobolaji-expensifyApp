@@ -37,7 +37,6 @@ export const asyncAddExpense = (expenseData = {}) => {
         id: snapshot.key,
         ...expense
       }))
-      console.log("Expense successfully added to database and redux  store!!!")
     })
   }
 }

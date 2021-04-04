@@ -2,9 +2,6 @@
 
 exports[`should render expenseDashboardPage correctly 1`] = `
 <div>
-  <h1>
-    Expensify App | Dashboard
-  </h1>
   <Connect(ExpenseSummary) />
   <Connect(ExpenseListFilter) />
   <Connect(ExpenseList) />

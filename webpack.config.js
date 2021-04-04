@@ -22,7 +22,7 @@ module.exports = (env) => {
  return ({
   mode: env.production ? "production": "development",
   entry: {
-   app: path.join(__dirname, "src/app.js")
+   app: [ '@babel/polyfill' ,path.join(__dirname, "src/app.js")]
   },
   output: {
    path: path.join(__dirname, "public", "dist"),
@@ -33,11 +33,19 @@ module.exports = (env) => {
     test: /\.js$/,
     exclude: /node-modules/,
     use: "babel-loader"
+   }, {
+    test: /\.(png|jpg)$/,
+    use: "url-loader"
    },
    {
     test: /\.s?css$/,
     use: [
-     MiniCssExtractPlugin.loader,{
+     {
+      loader: MiniCssExtractPlugin.loader,
+      options: {
+       publicPath: path.join(__dirname, "public")
+      }
+     },{
       loader: "css-loader",
       options: {
        sourceMap: true
